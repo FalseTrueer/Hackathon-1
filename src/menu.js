@@ -1,42 +1,36 @@
-import { Menu } from './core/menu';
+  import { Menu } from './core/menu';
 
-export class ContextMenu extends Menu {
-  #menu
+  export class ContextMenu extends Menu {
+    #menu
 
-   constructor(selector) {
-     super(selector);
-     if(document.querySelector('.menu-item')){
+    constructor(selector) {
+      super(selector);
+      this.#menu = document.querySelector('.menu');
       this.open();
       this.close();
+    }
 
-      this.#menu = document.querySelector('.menu');
-     }
-   }
+    open() {
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
 
-  open() {
-    document.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-
-      this.#menu.classList.add('open');
-      this.#menu.style.left = `${event.pageX}px`;
-      this.#menu.style.top = `${event.pageY}px`;
-    });
-  }
-
-  close() {
-    document.addEventListener('click', () => {
-        this.#menu.classList.remove('open');
+        this.#menu.classList.add('open');
+        this.#menu.style.left = `${event.pageX}px`;
+        this.#menu.style.top = `${event.pageY}px`;
       });
+    }
+
+    close() {
+      document.addEventListener('click', () => {
+          this.#menu.classList.remove('open');
+        });
+    }
+
+    add(module){
+      const menuItem = new DOMParser().parseFromString(module.toHTML(), 'text/html').body.firstChild
+
+      this.#menu.appendChild(menuItem)
+
+      menuItem.addEventListener('click', module.trigger.bind(module))
+    }
   }
-
-  add(module){
-    const menuItem = document.createElement('li')
-
-    menuItem.className = 'menu-item'
-    menuItem.innerText = module.name
-
-    this.#menu.append(menuItem)
-
-    menuItem.addEventListener('click', module.trigger)
-  }
-}
