@@ -1,7 +1,4 @@
 import { Menu } from './core/menu';
-import { setMenuItem } from './utils';
-import { ClicksModule } from './modules/clicks.module';
-import { MessagesModule } from './modules/message.module';
 
 export class ContextMenu extends Menu {
   #menu;
@@ -11,7 +8,6 @@ export class ContextMenu extends Menu {
     this.#menu = document.querySelector('.menu');
     this.open();
     this.close();
-    this.add();
   }
 
   open() {
@@ -30,11 +26,11 @@ export class ContextMenu extends Menu {
     });
   }
 
-  add() {
-    const clicksModule = new ClicksModule('click', 'Считать клики (за 3 секунды)');
-    setMenuItem(this.#menu, clicksModule);
+  add(module){
+    const menuItem = new DOMParser().parseFromString(module.toHTML(), 'text/html').body.firstChild
 
-    const messagesModule = new MessagesModule('message', 'Кастомное сообщение');
-    setMenuItem(this.#menu, messagesModule);
+    this.#menu.appendChild(menuItem)
+
+    menuItem.addEventListener('click', module.trigger.bind(module))
   }
 }

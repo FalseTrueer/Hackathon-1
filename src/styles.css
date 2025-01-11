@@ -40,15 +40,3 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
-
-.message {
-    background: #1b1a1a;
-    border-radius: 5px;
-    display: block;
-    color: white;
-    padding: 10px;
-    position: absolute;
-    left: 3px;
-    top: 15px;
-    width: 200px;
-}

@@ -1,5 +1,6 @@
-import { Module } from '../core/module';
-import { random } from '../utils';
+import { Module } from '../../core/module';
+import { random } from '../../utils';
+import './message.css';
 
 export class MessagesModule extends Module {
   constructor(type, text) {
