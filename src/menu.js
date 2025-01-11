@@ -1,17 +1,18 @@
 import { Menu } from './core/menu';
+import { setMenuItem } from './utils';
+import { ClicksModule } from './modules/clicks.module';
+import { MessagesModule } from './modules/message.module';
 
 export class ContextMenu extends Menu {
-  #menu
+  #menu;
 
-   constructor(selector) {
-     super(selector);
-     if(document.querySelector('.menu-item')){
-      this.open();
-      this.close();
-
-      this.#menu = document.querySelector('.menu');
-     }
-   }
+  constructor(selector) {
+    super(selector);
+    this.#menu = document.querySelector('.menu');
+    this.open();
+    this.close();
+    this.add();
+  }
 
   open() {
     document.addEventListener('contextmenu', (event) => {
@@ -25,18 +26,15 @@ export class ContextMenu extends Menu {
 
   close() {
     document.addEventListener('click', () => {
-        this.#menu.classList.remove('open');
-      });
+      this.#menu.classList.remove('open');
+    });
   }
 
-  add(module){
-    const menuItem = document.createElement('li')
+  add() {
+    const clicksModule = new ClicksModule('click', 'Считать клики (за 3 секунды)');
+    setMenuItem(this.#menu, clicksModule);
 
-    menuItem.className = 'menu-item'
-    menuItem.innerText = module.name
-
-    this.#menu.append(menuItem)
-
-    menuItem.addEventListener('click', module.trigger)
+    const messagesModule = new MessagesModule('message', 'Кастомное сообщение');
+    setMenuItem(this.#menu, messagesModule);
   }
 }
