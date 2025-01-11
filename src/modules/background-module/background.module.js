@@ -1,11 +1,12 @@
-import {Module} from '../core/module'
+import {Module} from '../../core/module'
+import './background.css'
 
 export class BackgroundModule extends Module {
 
     constructor(type, text) {
         super(type,text);
-        this.createButton();
     }
+
     getRandomColor () {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
@@ -14,11 +15,18 @@ export class BackgroundModule extends Module {
         document.body.style.backgroundColor = this.getRandomColor();
     }
 
-
-    createButton () {
+    trigger (event) {
         const button = document.createElement('button');
+        button.className = 'changeColorButton'
+        button.style.left = `${event.pageX}px`;
+        button.style.top = `${event.pageY}px`;
         button.textContent = 'Сменить фон';
-        button.onclick = this.changeBackgroundColor;
+        button.classList.add('active')
         document.body.appendChild(button);
+
+        button.addEventListener('click', () => {
+            document.body.style.backgroundColor = this.changeBackgroundColor()
+            button.remove()
+        })
     }
 }
