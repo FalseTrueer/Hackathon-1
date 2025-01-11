@@ -8,12 +8,14 @@ import { BackgroundModule } from './modules/background-module/background.module'
 
 const contextMenu = new ContextMenu();
 
-const timer = new Timer('timer', 'Таймер отсчета')
-const randomShape = new ShapeModule('randomShape', 'Случайная фигура')  
-const backgorundCl = new BackgroundModule('background','Поменять цвет фона')
+const timerModule = new Timer('timer', 'Таймер отсчета')
+const randomShapeModule = new ShapeModule('randomShape', 'Случайная фигура')  
+const backgorundColorModule = new BackgroundModule('background','Поменять цвет фона')
 const clicksModule = new ClicksModule('click', 'Считать клики (за 3 секунды)');
 const messagesModule = new MessagesModule('message', 'Кастомное сообщение');
-contextMenu.add(timer)
-contextMenu.add(randomShape)
-contextMenu.add(backgorundCl)
+contextMenu.add(timerModule)
+contextMenu.add(randomShapeModule)
+contextMenu.add(backgorundColorModule)
+contextMenu.add(clicksModule)
+contextMenu.add(messagesModule)
 

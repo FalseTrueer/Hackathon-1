@@ -9,6 +9,10 @@ export class Timer extends Module{
     }
 
     trigger(event){
+        if(document.querySelector('.timer')){         
+            return
+        }
+        
         this.initHTML()    
 
         const timer = document.querySelector('.timer')
@@ -16,7 +20,6 @@ export class Timer extends Module{
 
         timer.style.left = `${event.pageX}px`;
         timer.style.top = `${event.pageY}px`;
-        timer.classList.add('active')
 
         timer.addEventListener('submit', (event) => {
             event.preventDefault()
@@ -39,10 +42,10 @@ export class Timer extends Module{
         if (this.isTimerActive) {
             return;
         }
+
         this.isTimerActive = true;
 
         const timer = document.querySelector('.timer')
-        const timerInput = document.querySelector('.timer__input')
         const timerButton = document.querySelector('.timer__button')
         let timeLeft = timeInSeconds;
         let countdownDisplay = document.querySelector('.countdown-display')
@@ -58,12 +61,8 @@ export class Timer extends Module{
                 timer.style.backgroundColor = '#006400'
                 countdownDisplay.innerText = "Таймер завершен!";
                 setTimeout(() => {
-                    countdownDisplay.remove();
-                    timerInput.value = ''
-                    timer.style.backgroundColor = '#343434'
-                    timer.classList.remove('active')
-                    timerButton.disabled = false
-                    this.isTimerActive = false;
+                    timer.remove()
+                    this.isTimerActive = false
                 }, 2000);
             } else {
                 countdownDisplay.innerText = `Осталось времени: ${timeLeft} сек`;

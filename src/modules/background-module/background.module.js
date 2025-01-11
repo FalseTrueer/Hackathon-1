@@ -16,6 +16,10 @@ export class BackgroundModule extends Module {
     }
 
     trigger (event) {
+        if(document.querySelector('.changeColorButton')){
+            return
+        }
+
         const button = document.createElement('button');
         button.className = 'changeColorButton'
         button.style.left = `${event.pageX}px`;

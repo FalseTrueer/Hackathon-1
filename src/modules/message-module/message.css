@@ -4,8 +4,6 @@
     display: block;
     color: white;
     padding: 10px;
-    position: absolute;
-    left: 3px;
-    top: 15px;
+    position: fixed;
     width: 200px;
 }

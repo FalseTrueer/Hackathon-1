@@ -6,7 +6,7 @@ export class MessagesModule extends Module {
   constructor(type, text) {
     super(type, text);
   }
-  trigger() {
+  trigger(event) {
     const COMMENTS_URL = 'https://jsonplaceholder.typicode.com/comments';
 
     if (document.querySelector('.message')) {
@@ -15,6 +15,8 @@ export class MessagesModule extends Module {
 
     const messageBlock = document.createElement('p');
     messageBlock.className = 'message';
+    messageBlock.style.left = `${event.pageX}px`;
+    messageBlock.style.top = `${event.pageY}px`;
 
     const renderRandomMessage = async (id) => {
       try {
