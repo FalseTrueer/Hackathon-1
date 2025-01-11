@@ -1,4 +1,5 @@
-import { Module } from "../core/module";
+import { Module } from "../../core/module";
+import './timer.css'
 
 
 export class Timer extends Module{

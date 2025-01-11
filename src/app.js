@@ -1,6 +1,6 @@
 import './styles.css'
 import { ContextMenu } from './menu'
-import { Timer } from './modules/timer.module';
+import { Timer } from './modules/timer-module/timer.module';
 import { ShapeModule } from './modules/shape-module/shape.module';
 
 const contextMenu = new ContextMenu();
