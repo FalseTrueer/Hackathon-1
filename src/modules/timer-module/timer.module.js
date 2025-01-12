@@ -46,10 +46,12 @@ export class Timer extends Module{
         this.isTimerActive = true;
 
         const timer = document.querySelector('.timer')
+        const timerInput = document.querySelector('.timer__input')
         const timerButton = document.querySelector('.timer__button')
         let timeLeft = timeInSeconds;
         let countdownDisplay = document.querySelector('.countdown-display')
 
+        timerInput.disabled = true
         timerButton.disabled = true
         countdownDisplay = document.createElement('div');
         countdownDisplay.classList.add('countdown-display');
