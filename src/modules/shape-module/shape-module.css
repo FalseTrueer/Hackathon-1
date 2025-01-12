@@ -1,0 +1,6 @@
+.shape-module {
+  position: fixed;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 7%), 0 6px 9px rgb(0 0 0 / 14%);
+  mix-blend-mode: hard-light;
+}

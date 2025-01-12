@@ -1,0 +1,13 @@
+.changeColorButton{
+    width: 120px;
+    height: 50px;
+    position: fixed;
+    padding: 5px;
+    border-radius: 5px;
+    display: none;
+}
+
+.changeColorButton.active{
+    display: block;
+}
+
