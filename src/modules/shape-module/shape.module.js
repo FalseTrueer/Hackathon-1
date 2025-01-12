@@ -13,12 +13,13 @@ const shapeMap = {
 }
 
 const colors = [
-    'rgba(255,102,65,0.2)', 
-    'rgba(228,70,122,0.2)', 
-    'rgba(32,152,255,0.2)', 
-    'rgba(50,249,176,0.2)', 
-    'rgba(32,152,255,0.2)', 
-    'rgba(172,50,249,0.2)'
+    'rgba(255,102,65,0.5)', 
+    'rgba(228,70,122,0.5)', 
+    'rgba(32,152,255,0.5)', 
+    'rgba(50,249,176,0.5)', 
+    'rgba(172,50,249,0.5)',
+    'rgba(255,250,205,0.5)',
+    'rgba(240,128,128,0.5)',
 ];
 
 export class ShapeModule extends Module {
@@ -41,7 +42,7 @@ export class ShapeModule extends Module {
         figure.style.height = `${size}px`;
         figure.style.top = `${random(30, bodyHeight - size)}px`;
         figure.style.left = `${random(0, bodyWidth - size)}px`;
-        figure.style.backgroundImage = `linear-gradient(45deg, ${colorStart}, ${colorEnd})`;
+        figure.style.backgroundColor = colorStart;
 
         switch (shapeType) {
             case 'circle': 
@@ -55,9 +56,7 @@ export class ShapeModule extends Module {
                 figure.style.transform = 'rotate(45deg)'
                 break;
         }
-
-        console.log(random(20, 100))
-        
+      
         body.append(figure);
     }
 }
